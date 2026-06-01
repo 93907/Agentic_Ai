@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Quiz Result</title>
+
+<style>
+
+body{
+    background:#081a44;
+    color:white;
+    font-family:Arial;
+    padding:30px;
+}
+
+.card{
+    max-width:1000px;
+    margin:auto;
+    background:rgba(255,255,255,0.08);
+    padding:30px;
+    border-radius:20px;
+}
+
+.correct{
+    color:#22c55e;
+}
+
+.wrong{
+    color:#ef4444;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 20px;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>🎯 Quiz Result</h1>
+
+<h2>Score: {{ score }}/{{ total }}</h2>
+
+<h2>Percentage: {{ percentage }}%</h2>
+
+<hr>
+
+{% for r in results %}
+
+<h3>{{ r.question }}</h3>
+
+<p>
+Your Answer:
+<span class="wrong">
+{{ r.user_answer }}
+</span>
+</p>
+
+<p>
+Correct Answer:
+<span class="correct">
+{{ r.correct_answer }}
+</span>
+</p>
+
+<hr>
+
+{% endfor %}
+
+<a href="/dashboard" class="btn">
+Back To Dashboard
+</a>
+
+</div>
+
+</body>
+</html>

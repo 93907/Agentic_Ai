@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Search History</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        body{
+            background:#0f172a;
+            margin:0;
+            font-family:'Segoe UI',sans-serif;
+            color:white;
+        }
+
+        .topbar{
+            height:70px;
+            background:#111827;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:0 25px;
+            color:white;
+        }
+
+        .logo{
+            font-size:24px;
+            font-weight:bold;
+        }
+
+        .profile{
+            display:flex;
+            align-items:center;
+            gap:12px;
+        }
+
+        .profile-circle{
+            width:40px;
+            height:40px;
+            border-radius:50%;
+            background:#2563eb;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-weight:bold;
+        }
+
+        .history-container{
+            width:90%;
+            max-width:1100px;
+            margin:30px auto;
+        }
+
+        .page-title{
+            text-align:center;
+            margin-bottom:30px;
+            font-size:36px;
+        }
+
+        .history-card{
+            background:#1e293b;
+            border-radius:20px;
+            padding:25px;
+            margin-bottom:20px;
+            box-shadow:0 5px 20px rgba(0,0,0,0.4);
+        }
+
+        .question{
+            background:#2563eb;
+            padding:15px;
+            border-radius:12px;
+            margin-bottom:15px;
+            line-height:1.6;
+        }
+
+        .answer{
+            background:#334155;
+            padding:15px;
+            border-radius:12px;
+            line-height:1.8;
+            white-space:pre-wrap;
+        }
+
+        .timestamp{
+            margin-top:15px;
+            color:#94a3b8;
+            font-size:14px;
+        }
+
+        .back-btn{
+            display:inline-block;
+            margin-top:20px;
+            text-decoration:none;
+            background:#2563eb;
+            color:white;
+            padding:12px 20px;
+            border-radius:10px;
+        }
+
+        .back-btn:hover{
+            background:#1d4ed8;
+        }
+
+        .empty-box{
+            background:#1e293b;
+            padding:40px;
+            border-radius:20px;
+            text-align:center;
+            font-size:20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+    <div class="logo">
+        🎓 Academic AI Assistant
+    </div>
+
+    <div class="profile">
+
+        <span>{{ session['username'] }}</span>
+
+        <div class="profile-circle">
+            {{ session['username'][0]|upper }}
+        </div>
+
+    </div>
+
+</div>
+
+<div class="history-container">
+
+    <h1 class="page-title">
+        📊 Search History
+    </h1>
+
+    {% if history %}
+
+        {% for item in history %}
+
+            <div class="history-card">
+
+                <div class="question">
+
+                    <strong>🙋 Question</strong>
+
+                    <br><br>
+
+                    {{ item.question }}
+
+                </div>
+
+                <div class="answer">
+
+                    <strong>🤖 AI Response</strong>
+
+                    <br><br>
+
+                    {{ item.answer }}
+
+                </div>
+
+                {% if item.timestamp %}
+
+                <div class="timestamp">
+
+                    🕒 {{ item.timestamp }}
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="empty-box">
+
+            📭 No Search History Found
+
+            <br><br>
+
+            Start chatting with the AI Assistant.
+
+        </div>
+
+    {% endif %}
+
+    <a href="/dashboard" class="back-btn">
+        ← Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

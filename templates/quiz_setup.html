@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Quiz Setup</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        body{
+            margin:0;
+            font-family:Arial,sans-serif;
+            background:linear-gradient(
+                90deg,
+                #081a44,
+                #172b55
+            );
+            color:white;
+            min-height:100vh;
+        }
+
+        .topbar{
+            background:#111827;
+            height:75px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:0 30px;
+            box-shadow:0 2px 15px rgba(0,0,0,0.3);
+        }
+
+        .brand{
+            font-size:26px;
+            font-weight:bold;
+        }
+
+        .profile{
+            display:flex;
+            align-items:center;
+            gap:15px;
+        }
+
+        .profile-circle{
+            width:45px;
+            height:45px;
+            border-radius:50%;
+            background:#2563eb;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-weight:bold;
+            font-size:18px;
+        }
+
+        .container{
+            display:flex;
+            justify-content:center;
+            margin-top:50px;
+        }
+
+        .quiz-card{
+            width:700px;
+            background:rgba(255,255,255,0.08);
+            backdrop-filter:blur(12px);
+            border-radius:20px;
+            padding:35px;
+        }
+
+        .quiz-card h1{
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:8px;
+            font-weight:bold;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            border:none;
+            border-radius:10px;
+            margin-bottom:20px;
+            box-sizing:border-box;
+        }
+
+        .btn{
+            width:100%;
+            padding:14px;
+            background:#2563eb;
+            color:white;
+            border:none;
+            border-radius:10px;
+            font-size:16px;
+            cursor:pointer;
+        }
+
+        .btn:hover{
+            background:#1d4ed8;
+        }
+
+        .back-btn{
+            display:inline-block;
+            margin-bottom:20px;
+            padding:10px 15px;
+            background:#374151;
+            color:white;
+            text-decoration:none;
+            border-radius:10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+    <div class="brand">
+        🎓 Academic AI Assistant
+    </div>
+
+    <div class="profile">
+
+        <div>
+            {{ session['username'] }}
+        </div>
+
+        <div class="profile-circle">
+            {{ session['username'][0]|upper }}
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container">
+
+    <div class="quiz-card">
+
+        <a href="/dashboard" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+        <h1>📝 Quiz Generator</h1>
+
+        <form action="/start_quiz" method="POST">
+
+            <label>Name</label>
+            <input type="text"
+                   name="name"
+                   required>
+
+            <label>Username</label>
+            <input type="text"
+                   value="{{session['username']}}"
+                   readonly>
+
+            <label>Topic</label>
+            <input type="text"
+                   name="topic"
+                   required>
+
+            <label>Number of Questions</label>
+            <input type="number"
+                   name="num_questions"
+                   min="1"
+                   max="50"
+                   required>
+
+            <label>Duration (Minutes)</label>
+            <input type="number"
+                   name="duration"
+                   min="1"
+                   required>
+
+            <button type="submit" class="btn">
+                Generate Quiz
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

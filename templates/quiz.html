@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Quiz Exam</title>
+
+<style>
+
+body{
+    background:#081a44;
+    color:white;
+    font-family:Arial;
+    padding:30px;
+}
+
+.card{
+    max-width:1000px;
+    margin:auto;
+    background:rgba(255,255,255,0.08);
+    padding:30px;
+    border-radius:20px;
+}
+
+.timer{
+    font-size:24px;
+    font-weight:bold;
+    color:#60a5fa;
+    margin-bottom:20px;
+}
+
+.question{
+    margin-bottom:30px;
+}
+
+.option{
+    margin:10px 0;
+}
+
+button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>📝 Quiz Exam</h1>
+
+<h3>Topic: {{ topic }}</h3>
+
+<div class="timer" id="timer"></div>
+
+<form id="quizForm" action="/submit_quiz" method="POST">
+
+{% for q in questions %}
+
+{% set q_index = loop.index0 %}
+
+<div class="question">
+
+<h3>
+Q{{ loop.index }}.
+{{ q.question }}
+</h3>
+
+{% for option in q.options %}
+
+<div class="option">
+
+<label>
+
+<input
+type="radio"
+name="q{{ q_index }}"
+value="{{ option }}"
+required>
+
+{{ option }}
+
+</label>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endfor %}
+<button type="submit">
+Submit Quiz
+</button>
+
+</form>
+
+</div>
+
+<script>
+
+let seconds = Number("{{ duration }}") * 60;
+
+function updateTimer(){
+
+let minutes = Math.floor(seconds / 60);
+let sec = seconds % 60;
+
+document.getElementById("timer").innerHTML =
+"Time Left: " +
+minutes + ":" +
+String(sec).padStart(2,'0');
+
+if(seconds <= 0){
+    document.getElementById("quizForm").submit();
+}
+
+seconds--;
+}
+
+setInterval(updateTimer,1000);
+
+document.addEventListener("visibilitychange", function(){
+
+    if(document.hidden){
+
+        alert("Tab switching detected. Quiz ended.");
+
+        document.getElementById("quizForm").submit();
+    }
+
+});
+
+</script>
+
+</body>
+</html>

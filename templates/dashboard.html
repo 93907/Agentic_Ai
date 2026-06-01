@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Academic AI Assistant</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        .topbar{
+            background:#111827;
+            height:75px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:0 30px;
+            box-shadow:0 2px 15px rgba(0,0,0,0.3);
+        }
+
+        .brand{
+            font-size:26px;
+            font-weight:bold;
+        }
+
+        .profile{
+            display:flex;
+            align-items:center;
+            gap:15px;
+        }
+
+        .profile-circle{
+            width:45px;
+            height:45px;
+            border-radius:50%;
+            background:#2563eb;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-weight:bold;
+            font-size:18px;
+        }
+
+        .welcome{
+            font-size:16px;
+        }
+
+        .hero{
+            text-align:center;
+            margin-top:40px;
+            margin-bottom:40px;
+        }
+
+        .hero h1{
+            font-size:42px;
+            margin-bottom:10px;
+        }
+
+        .hero p{
+            color:#cbd5e1;
+        }
+
+        .dashboard-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+            gap:25px;
+            margin-top:30px;
+        }
+
+        .feature-card{
+            background:rgba(255,255,255,0.08);
+            backdrop-filter:blur(12px);
+            border-radius:20px;
+            padding:25px;
+            transition:0.3s;
+        }
+
+        .feature-card:hover{
+            transform:translateY(-10px);
+        }
+
+        .feature-card h2{
+            margin-bottom:15px;
+        }
+
+        .feature-card p{
+            color:#d1d5db;
+            margin-bottom:20px;
+        }
+
+        .action-btn{
+            display:inline-block;
+            text-decoration:none;
+            background:#2563eb;
+            color:white;
+            padding:12px 20px;
+            border-radius:10px;
+        }
+
+        .action-btn:hover{
+            background:#1d4ed8;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+    <div class="brand">
+        🎓 Academic AI Assistant
+    </div>
+
+    <div class="profile">
+
+        <div class="welcome">
+            {{ session['username'] }}
+        </div>
+
+        <div class="profile-circle">
+            {{ session['username'][0]|upper }}
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container">
+
+    <div class="hero">
+
+        <h1>Welcome to Your AI Learning Hub</h1>
+
+        <p>
+            Upload notes, ask questions, generate quizzes,
+            and learn smarter with AI.
+        </p>
+
+    </div>
+
+    <div class="dashboard-grid">
+
+        <div class="feature-card">
+
+            <h2>🤖 AI Assistant</h2>
+
+            <p>
+                Ask any academic, coding,
+                technology, or general question.
+            </p>
+
+            <a href="/chatbot" class="action-btn">
+                Open Chatbot
+            </a>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h2>📚 Upload Notes</h2>
+
+            <p>
+                Upload PDFs and study materials
+                for AI-powered learning.
+            </p>
+
+            <a href="/upload_pdf"
+   class="action-btn"
+   onclick="return checkUploadAccess();">
+    Upload PDF
+</a>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h2>📊 Search History</h2>
+
+            <p>
+                View all your previous questions
+                and AI responses.
+            </p>
+
+            <a href="/history" class="action-btn">
+                View History
+            </a>
+
+        </div>
+
+        <div class="feature-card">
+
+            <h2>📝 Quiz Generator</h2>
+
+            <p>
+                Generate quizzes automatically
+                from uploaded study material.
+            </p>
+
+            <a href="/quiz_setup" class="action-btn">
+                Generate Quiz
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function checkUploadAccess() {
+
+    var role = "{{ session['role'] }}";
+
+    if(role === "student"){
+        alert("This section is not available for students.");
+        return false;
+    }
+
+    return true;
+}
+</script>
+
+
+</body>
+</html>

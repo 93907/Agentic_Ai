@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Secure Academic Assistant</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        #020024,
+        #090979,
+        #1b1464
+    );
+
+    color:white;
+}
+
+.container{
+
+    width:1200px;
+
+    display:flex;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+    0 0 40px rgba(0,0,0,0.4);
+}
+
+.left{
+
+    width:50%;
+
+    padding:60px;
+}
+
+.logo{
+
+    font-size:36px;
+    font-weight:bold;
+
+    margin-bottom:40px;
+}
+
+.logo span{
+    color:#8b5cf6;
+}
+
+.hero-icon{
+
+    font-size:180px;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.left h1{
+
+    text-align:center;
+
+    font-size:50px;
+
+    margin-bottom:20px;
+}
+
+.left h1 span{
+    color:#8b5cf6;
+}
+
+.left p{
+
+    text-align:center;
+
+    color:#cbd5e1;
+
+    font-size:20px;
+
+    line-height:1.7;
+}
+
+.features{
+
+    margin-top:40px;
+
+    display:flex;
+
+    gap:20px;
+}
+
+.feature{
+
+    flex:1;
+
+    background:
+    rgba(255,255,255,0.08);
+
+    padding:20px;
+
+    border-radius:15px;
+
+    text-align:center;
+}
+
+.right{
+
+    width:50%;
+
+    padding:60px;
+}
+
+.card{
+
+    background:
+    rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    border-radius:25px;
+
+    padding:40px;
+}
+
+.card h2{
+
+    text-align:center;
+
+    font-size:42px;
+
+    margin-bottom:15px;
+}
+
+.card p{
+
+    text-align:center;
+
+    color:#cbd5e1;
+
+    margin-bottom:30px;
+}
+
+input, select{
+
+    width:100%;
+
+    padding:18px;
+
+    margin-bottom:20px;
+
+    border:none;
+
+    border-radius:15px;
+
+    font-size:16px;
+
+    background:
+    rgba(255,255,255,0.1);
+
+    color:white;
+}
+
+input::placeholder{
+    color:#ddd;
+}
+
+select{
+    color:white;
+}
+
+option{
+    color:black;
+}
+
+button{
+
+    width:100%;
+
+    padding:18px;
+
+    border:none;
+
+    border-radius:15px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    background:
+    linear-gradient(
+        90deg,
+        #2563eb,
+        #8b5cf6,
+        #ec4899
+    );
+
+    color:white;
+
+    transition:0.3s;
+}
+
+button:hover{
+
+    transform:scale(1.02);
+}
+
+.login{
+
+    text-align:center;
+
+    margin-top:25px;
+}
+
+.login a{
+
+    color:#60a5fa;
+
+    text-decoration:none;
+
+    font-weight:bold;
+}
+
+.login a:hover{
+    text-decoration:underline;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="left">
+
+        <div class="logo">
+            🎓 Secure <span>Academic Assistant</span>
+        </div>
+
+        <div class="hero-icon">
+            🔐
+        </div>
+
+        <h1>
+            Learn Smarter.
+            <span>Stay Secure.</span>
+        </h1>
+
+        <p>
+            AI Powered Academic Assistant
+            with OTP Authentication,
+            PDF Knowledge Base,
+            Quiz Generation,
+            Notes Summarization
+            and Secure Learning.
+        </p>
+
+        <div class="features">
+
+            <div class="feature">
+                🔒<br><br>
+                OTP Security
+            </div>
+
+            <div class="feature">
+                🤖<br><br>
+                AI Assistant
+            </div>
+
+            <div class="feature">
+                📚<br><br>
+                RAG Learning
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="right">
+
+        <div class="card">
+
+            <h2>Create Account</h2>
+
+            <p>
+                Start your journey with us today
+            </p>
+
+            <form method="POST">
+
+                <input
+                type="text"
+                name="username"
+                placeholder="Enter Username"
+                required>
+
+                <input
+                type="password"
+                name="password"
+                placeholder="Enter Password"
+                required>
+
+                <select name="role" required>
+
+                    <option value="">
+                        Select Role
+                    </option>
+
+                    <option value="student">
+                        Student
+                    </option>
+
+                    <option value="faculty">
+                        Faculty
+                    </option>
+
+                </select>
+
+                <button type="submit">
+                    Register
+                </button>
+
+            </form>
+
+            <div class="login">
+
+                Already have an account?
+
+                <a href="/login">
+                    Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
