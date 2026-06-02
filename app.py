@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, session, send_file
 from pymongo import MongoClient
 from werkzeug.security import generate_password_hash, check_password_hash
 from groq import Groq
-from sentence_transformers import SentenceTransformer
+
 import pyotp
 import qrcode
 import os
@@ -53,9 +53,6 @@ search_history_db = db["search_history"]
 
 # ---------------------------------
 
-embedding_model = SentenceTransformer(
-"all-MiniLM-L6-v2"
-)
 
 # ---------------------------------
 
