@@ -5,6 +5,5 @@ groq
 pyotp
 qrcode
 PyMuPDF
-sentence-transformers
 numpy
 gunicorn
