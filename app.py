@@ -9,8 +9,6 @@ import os
 import fitz
 import uuid
 from datetime import datetime
-
-from sentence_transformers import SentenceTransformer
 from numpy import dot
 from numpy.linalg import norm
 import json
